@@ -5,7 +5,6 @@ const path = require("path");
 
 
 
-
 // Array of questions to setup employees
 const questions = [
   {
