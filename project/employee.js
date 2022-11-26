@@ -1,10 +1,10 @@
-
-function employee {
+//Need to fix class syntax errors with documentation bcs sent
+class Employee {
     constructor (employeeName, id, email, role){
-        this.employeeName = name;
+        this.employeeName = Name;
         this.id = id;
         this.email = email;
-        this.role = eole;
+        this.role = role;
     }
 }
     getName() {
