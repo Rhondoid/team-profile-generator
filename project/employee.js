@@ -1,23 +1,23 @@
-//Need to fix class syntax errors with documentation bcs sent
+//Need to fix class syntax errors with documentation bcs sentp
 class Employee {
-    constructor (employeeName, id, email, role){
-        this.employeeName = Name;
-        this.id = id;
-        this.email = email;
-        this.role = role;
-    }
-}
-    getName() {
-    return this.name;
-}
-    getId (){
+  constructor(employeeName, id, email, role) {
+    this.employeeName = employeeName;
+    this.id = id;
+    this.email = email;
+    this.role = role;
+  }
+  getName() {
+    return this.employeeName;
+  }
+  getId() {
     return this.id;
-}
-    getEmail () {
+  }
+  getEmail() {
     return this.email;
-}
-    getRole () {
+  }
+  getRole() {
     return "Employee";
+  }
 }
 
-module.exports = "Employee";
+module.exports = Employee;
