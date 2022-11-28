@@ -1,4 +1,4 @@
-//Need to fix class syntax errors with documentation bcs sentp
+//Test states Employee undefined
 class Employee {
   constructor(employeeName, id, email, role) {
     this.employeeName = employeeName;
@@ -16,7 +16,7 @@ class Employee {
     return this.email;
   }
   getRole() {
-    return "Employee";
+    return this.Employee;
   }
 }
 
