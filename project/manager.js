@@ -19,7 +19,7 @@ class Manager {
     getEmail() {
       return this.email;
     }
-    getRole() &mdash {
+    getRole()  {
       return this.Manager;
     }
   }

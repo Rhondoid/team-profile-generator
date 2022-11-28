@@ -3,6 +3,7 @@ class Intern {
     constructor(employeeName, id, email, role) {
       this.employeeName = employeeName;
       this.id = id;
+      this.school = school;
       this.email = email;
       this.role = role;
     }
@@ -13,12 +14,12 @@ class Intern {
       return this.id;
     }
     getSchool() {
-        return this.email;
+        return this.school;
     }
     getEmail() {
       return this.email;
     }
-    getRole()&mdash{
+    getRole(){
       return this.Intern;
     }
   }

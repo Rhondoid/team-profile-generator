@@ -3,7 +3,7 @@ class Engineer {
     this.employeeName = employeeName;
     this.id = id;
     this.email = email;
-    this.officeNumber;
+    this.github;
     this.role = role;
   }
   getName() {
@@ -18,7 +18,7 @@ class Engineer {
   getEmail() {
     return this.email;
   }
-  getRole() &mdash {
+  getRole()  {
     return this.Engineer;
   }
 }
