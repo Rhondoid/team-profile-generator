@@ -19,13 +19,13 @@ describe("employee profile setup", () => {
       expect(employee_object.getName()).toEqual("Noah");
     });
     it("test_getId function", () => {
-        expect(employee_object.getId()).toEqual(2);
-      });
+      expect(employee_object.getId()).toEqual(2);
+    });
     it("test_getEmail function", () => {
-        expect(employee_object.getEmail()).toEqual("noah@gmail.com");
-      });
+      expect(employee_object.getEmail()).toEqual("noah@gmail.com");
+    });
     it("test_getRole function", () => {
-        expect(employee_object.getRole()).toEqual(Employee);
-      });
+      expect(employee_object.getRole()).toEqual("Employee");
+    });
   });
 });

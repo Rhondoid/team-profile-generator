@@ -2,13 +2,19 @@ const Engineer = require("../project/engineer.js");
 
 describe("employee profile setup", () => {
   describe("initialization", () => {
-    let employee_object = new Engineer("Sam", 4, "sam@gmail.com", "Engineer");
+    let employee_object = new Engineer(
+      "Sam",
+      4,
+      "samgoody",
+      "sam@gmail.com",
+      "Engineer"
+    );
 
     it("employee constructor testing", () => {
       let expected_output = {
         employeeName: "Sam",
         id: 4,
-        github: ""
+        github: "samgoody",
         email: "sam@gmail.com",
         role: "Engineer",
       };
@@ -20,17 +26,16 @@ describe("employee profile setup", () => {
       expect(employee_object.getName()).toEqual("Sam");
     });
     it("test_getId function", () => {
-        expect(employee_object.getId()).toEqual(4);
-      });
-      it("test_getGithub function", () => {
-        expect(employee_object.getId()).toEqual(4);
-      });
+      expect(employee_object.getId()).toEqual(4);
+    });
+    it("test_getGithub function", () => {
+      expect(employee_object.getId()).toEqual(4);
+    });
     it("test_getEmail function", () => {
-        expect(employee_object.getEmail()).toEqual("sam@gmail.com");
-      });
+      expect(employee_object.getEmail()).toEqual("sam@gmail.com");
+    });
     it("test_getRole function", () => {
-        expect(employee_object.getRole()).toEqual(Engineer);
-      });
+      expect(employee_object.getRole()).toEqual("Engineer");
+    });
   });
 });
-
