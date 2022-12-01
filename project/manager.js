@@ -1,6 +1,6 @@
 
 class Manager {
-    constructor(employeeName, id, email, role) {
+    constructor(employeeName, id, officeNumber, email, role) {
       this.employeeName = employeeName;
       this.id = id;
       this.email = email;
@@ -20,7 +20,7 @@ class Manager {
       return this.email;
     }
     getRole()  {
-      return this.Manager;
+      return this.role;
     }
   }
   

@@ -1,6 +1,6 @@
 //Test states Employee undefined
 class Intern {
-    constructor(employeeName, id, email, role) {
+    constructor(employeeName, id, school, email, role) {
       this.employeeName = employeeName;
       this.id = id;
       this.school = school;
@@ -20,7 +20,7 @@ class Intern {
       return this.email;
     }
     getRole(){
-      return this.Intern;
+      return this.role;
     }
   }
   

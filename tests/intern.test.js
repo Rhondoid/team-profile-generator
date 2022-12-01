@@ -2,13 +2,13 @@ const Intern = require("../project/intern.js");
 
 describe("employee profile setup", () => {
   describe("initialization", () => {
-    let employee_object = new Employee("Sara", 2, "sara@gmail.com", "Employee");
+    let employee_object = new Employee("Sara", 2, "school", "sara@gmail.com", "Employee");
 
     it("employee constructor testing", () => {
       let expected_output = {
         employeeName: "Sara",
         id: 5,
-        school: "Harvard"
+        school: "Harvard",
         email: "sara@gmail.com",
         role: "Intern",
       };

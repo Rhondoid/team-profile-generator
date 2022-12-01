@@ -7,7 +7,7 @@ describe("employee profile setup", () => {
     it("employee constructor testing", () => {
       let expected_output = {
         employeeName: "John",
-        id: 2,
+        id: 3,
         officeNumber: "801-442-5252",
         email: "john@gmail.com",
         role: "Manager",
