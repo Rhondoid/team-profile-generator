@@ -29,7 +29,7 @@ describe("employee profile setup", () => {
         expect(employee_object.getEmail()).toEqual("john@gmail.com");
     });
     it("test_getRole function", () => {
-        expect(employee_object.getRole()).toEqual(Manager);
+        expect(employee_object.getRole()).toEqual("Manager");
     });
   });
 });
