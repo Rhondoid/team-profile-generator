@@ -72,7 +72,7 @@ function init() {
       if (inputResponses.role == "Manager"){
         askManagerQuestions(inputResponses);
       }
-     );
+    });
 }
 
   function askManagerQuestions(employeeData){
@@ -87,12 +87,13 @@ function init() {
      fs.writeFileSync("./index.html", newManager, function (err) {
       if (err) console.log(err);
       console.log("new employee added");
+      continueQuestions()
     });
   })
   .catch((err) => {
     console.log(err);
   }
-     continueQuestions()
+   
 
   );
     
