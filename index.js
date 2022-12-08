@@ -6,6 +6,7 @@ const Employee = require("./project/employee.js");
 const Engineer = require("./project/engineer.js");
 const Intern = require("./project/intern.js");
 const Manager = require("./project/manager.js");
+let newManager = "myManager"
 
 // Array of questions to setup employees
 //make each individual question
@@ -67,25 +68,11 @@ function init() {
   inquirer
     .prompt(employeeQuestions)
     .then((inputResponses) => {
-      // console.log(inputResponses.employeeQuestions);
-      // let employeeName = newEmployee(
-      //   employeeName,
-      //   id,
-      //   officeNumber,
-      //   email,
-      //   role
-      // );
+
       if (inputResponses.role == "Manager"){
         askManagerQuestions(inputResponses);
       }
-    //   fs.writeFileSync("./index.html", generatedString, function (err) {
-    //     if (err) console.log(err);
-    //     console.log("new employee added");
-    //   });
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    });
+     );
 }
 
   function askManagerQuestions(employeeData){
@@ -97,6 +84,14 @@ function init() {
       const myManager = new Manager(employeeData.employeeName, employeeData.id, inputResponses.officeNumber,employeeData.email, employeeData.role) 
      console.log(myManager);
      //push manager object to list of employee,  or write to html doc
+     fs.writeFileSync("./index.html", newManager, function (err) {
+      if (err) console.log(err);
+      console.log("new employee added");
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  }
      continueQuestions();
 
     });
