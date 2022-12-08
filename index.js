@@ -92,9 +92,9 @@ function init() {
   .catch((err) => {
     console.log(err);
   }
-     continueQuestions();
+     continueQuestions()
 
-    });
+  );
     
   }
 function continueQuestions(){
