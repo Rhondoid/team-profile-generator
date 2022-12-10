@@ -6,7 +6,12 @@ const Employee = require("./lib/employee.js");
 const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
+
+// writing to employeeList
 let newManager = "myManager"
+let newEngineer = "myEngineer"
+let newIntern = "myIntern"
+let newEmployee = "myEmployee"
 
 // Array of questions to setup employees
 //make each individual question
@@ -84,10 +89,12 @@ function init() {
       const myManager = new Manager(employeeData.employeeName, employeeData.id, inputResponses.officeNumber,employeeData.email, employeeData.role) 
      console.log(myManager);
      //push manager object to list of employee,  or write to html doc
-     fs.writeFileSync("./index.html", newManager, function (err) {
-      if (err) console.log(err);
-      console.log("new employee added");
+    //  fs.writeFileSync("./index.html", newManager, function (err) {
+    //   if (err) console.log(err);
+    //   console.log("new employee added");
       continueQuestions()
+
+    //   
     });
   })
   .catch((err) => {
