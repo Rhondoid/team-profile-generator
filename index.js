@@ -2,10 +2,10 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
 
-const Employee = require("./project/employee.js");
-const Engineer = require("./project/engineer.js");
-const Intern = require("./project/intern.js");
-const Manager = require("./project/manager.js");
+const Employee = require("./lib/employee.js");
+const Engineer = require("./lib/engineer.js");
+const Intern = require("./lib/intern.js");
+const Manager = require("./lib/manager.js");
 let newManager = "myManager"
 
 // Array of questions to setup employees
