@@ -7,107 +7,109 @@ const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
 
-// writing to employeeList
-let newManager = "myManager"
-let newEngineer = "myEngineer"
-let newIntern = "myIntern"
-let newEmployee = "myEmployee"
+let allData = [];
 
 // Array of questions to setup employees
 //make each individual question
-let employeeQuestions = [
+let generalQuestions = [
   {
     type: "input",
     message: "what is the employee's name?",
-    name:"employeeName",
-  }
-  ,
+    name: "employeeName",
+  },
   {
     type: "input",
     message: "what is the employee's id?",
-    name:"id",
-  }
-  ,
+    name: "id",
+  },
   {
     type: "input",
     message: "what is the employee's email?",
-    name:"email",
-  }
-  ,
-  
+    name: "email",
+  },
+
+  //second questions list
+];
+let choiceQuestion = [
   {
     type: "list",
     message: "What is the employee role?",
     name: "role",
-    choices: ["Manager", "Employee", "Engineer", "Intern"]
-  }
-
-  //second questions list
-
+    choices: ["Engineer", "Intern", "none"],
+  },
 ];
 
 let managerQuestions = [
   {
     type: "input",
     message: "what is the managers office number?",
-    name:"officeNumber",
-  }
-  ]
+    name: "officeNumber",
+  },
+];
 let engineerQuestions = [
-    {
-      type: "input",
-      message: "what is the engineer github?",
-      name:"github",
-    }
-  ]
+  {
+    type: "input",
+    message: "what is the engineer github?",
+    name: "github",
+  },
+];
 let internQuestions = [
-      {
-        type: "input",
-        message: "what is the engineer github?",
-        name:"github",
-      }
-  
-  ];
+  {
+    type: "input",
+    message: "what is the interns school?",
+    name: "school",
+  },
+];
 
 function init() {
   inquirer
-    .prompt(employeeQuestions)
+    .prompt([...generalQuestions, ...managerQuestions, ...choiceQuestion])
     .then((inputResponses) => {
-
-      if (inputResponses.role == "Manager"){
-        askManagerQuestions(inputResponses);
+      const myManager = new Manager(
+        inputResponses.employeeName,
+        inputResponses.id,
+        inputResponses.officeNumber,
+        inputResponses.email
+      );
+      allData.push(myManager);
+      console.log(myManager);
+      if (inputResponses.role == "Engineer") {
+        askEngineerQuestions();
+      } else if (inputResponses.role === "Intern") {
+        askInternQuestions();
+      } else if (inputResponses.role === "None") {
       }
     });
+  function askInternQuestions() {
+    inquirer
+      .prompt([...generalQuestions, ...internQuestions, ...choiceQuestion])
+      .then((answers) => {
+        console.log(answers);
+        let myIntern = new Intern(
+          answers.employeeName,
+          inputResponses.id,
+          inputResponses.school,
+          inputResponses.email
+        );
+        allData.push(myIntern);
+        console.log(myIntern);
+      });
+  }
 }
 
-  function askManagerQuestions(employeeData){
-    inquirer
-    .prompt(managerQuestions)
-    .then((inputResponses) =>{
+function askEngineerQuestions() {
+  inquirer
+    .prompt([...generalQuestions, ...engineerQuestions, ...choiceQuestion])
+    .then((inputResponses) => {
       console.log(inputResponses);
-      
-      const myManager = new Manager(employeeData.employeeName, employeeData.id, inputResponses.officeNumber,employeeData.email, employeeData.role) 
-     console.log(myManager);
-     //push manager object to list of employee,  or write to html doc
-    //  fs.writeFileSync("./index.html", newManager, function (err) {
-    //   if (err) console.log(err);
-    //   console.log("new employee added");
-      continueQuestions()
-
-    //   
+      const myEngineer = new Engineer(
+        inputResponses.employeeName,
+        inputResponses.id,
+        inputResponses.github,
+        inputResponses.email
+      );
+      allData.push(myEngineer);
+      console.log(myEngineer);
     });
-  })
-  .catch((err) => {
-    console.log(err);
-  }
-   
-
-  );
-    
-  }
-function continueQuestions(){
-  //ask user to continue questions or quit
-  //if user wants to continue then or quit function
-  init(); 
 }
 init();
