@@ -43,4 +43,4 @@ const html = (data) => {
   `;
 };
 
-module.exports = data;
+module.exports = html;
