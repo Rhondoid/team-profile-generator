@@ -7,6 +7,9 @@ const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
 
+const data = require("./dist/index.js")
+// const myTeam = require("./dist/index.js")
+let newTeam = "data"
 let allData = [];
 
 // Array of questions to setup employees
@@ -112,4 +115,19 @@ function askEngineerQuestions() {
       console.log(myEngineer);
     });
 }
+function newTeam() {}
+
+dataMyTeam.prototype.read = function(file) {
+  return fs.readFileSync(file, "UTF-8");
+};
+
+newTeam.prototype.write = function(path, data) {
+  return fs.writeFileSync(path, data);
+};
+
+newTeam.prototype.append = function(file, data) {
+  return fs.appendFileSync(file, data);
+};
+
+module.exports = newTeam;
 init();

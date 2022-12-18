@@ -7,7 +7,7 @@ const html = (data) => {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Team Profile Generator</title>
+    <title>My Team</title>
   </head>
   <body>
     <div class="flex space-x-4">
@@ -42,3 +42,5 @@ const html = (data) => {
   
   `;
 };
+
+module.exports = data;
