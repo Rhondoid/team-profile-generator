@@ -7,7 +7,7 @@ const Engineer = require("./lib/engineer.js");
 const Intern = require("./lib/intern.js");
 const Manager = require("./lib/manager.js");
 
-const html = require("./dist/index.js")
+const html = require("./dist/index.js");
 // const myTeam = require("./dist/index.js")
 // let newTeam = "data"
 let allData = [];
@@ -38,7 +38,7 @@ let choiceQuestion = [
     type: "list",
     message: "What is the employee role?",
     name: "role",
-    choices: ["Engineer", "Intern", "none"],
+    choices: ["Engineer", "Intern", "Manager", "none"],
   },
 ];
 
@@ -66,43 +66,42 @@ let internQuestions = [
 
 function init() {
   inquirer
-    .prompt([...generalQuestions, ...managerQuestions, ...choiceQuestion])
+    .prompt([...choiceQuestion])
     .then((inputResponses) => {
-      const myManager = new Manager(
-        inputResponses.employeeName,
-        inputResponses.id,
-        inputResponses.officeNumber,
-        inputResponses.email
-      );
-      allData.push(myManager);
-      console.log(myManager);
+    
+      // console.log(myManager);
       if (inputResponses.role == "Engineer") {
         askEngineerQuestions();
       } else if (inputResponses.role === "Intern") {
         askInternQuestions();
-      } else if (inputResponses.role === "None") {
+      } else if (inputResponses.role === "none") {
+        generateHTML()
+      }else if (inputResponses.role ==="Manager"){
+        askManagerQuestions()
+        
       }
     });
   function askInternQuestions() {
     inquirer
-      .prompt([...generalQuestions, ...internQuestions, ...choiceQuestion])
-      .then((answers) => {
-        console.log(answers);
+      .prompt([...generalQuestions, ...internQuestions])
+      .then((inputResponses) => {
+        
         let myIntern = new Intern(
-          answers.employeeName,
+          inputResponses.employeeName,
           inputResponses.id,
           inputResponses.school,
           inputResponses.email
         );
         allData.push(myIntern);
-        console.log(myIntern);
+        // console.log(myIntern); 
+        init()
       });
   }
 }
 
 function askEngineerQuestions() {
   inquirer
-    .prompt([...generalQuestions, ...engineerQuestions, ...choiceQuestion])
+    .prompt([...generalQuestions, ...engineerQuestions])
     .then((inputResponses) => {
       console.log(inputResponses);
       const myEngineer = new Engineer(
@@ -112,22 +111,48 @@ function askEngineerQuestions() {
         inputResponses.email
       );
       allData.push(myEngineer);
-      console.log(myEngineer);
+      // console.log(myEngineer);
+      init()
     });
 }
-function html() {}
+function askManagerQuestions() {
+  inquirer
+    .prompt([...generalQuestions, ...managerQuestions])
+    .then((inputResponses) => {
+      console.log(inputResponses);
+      const myManager = new Manager(
+        inputResponses.employeeName,
+        inputResponses.id,
+        inputResponses.officeNumber,
+        inputResponses.email
+      );
+      allData.push(myManager);
+      // console.log(myManager);
+      init()
+    });
+    
+}
+// {
+//   html;
+// }
 
-html.prototype.read = function(file) {
-  return fs.readFileSync(file, "UTF-8");
-};
+// html.prototype.read = function (file) {
+//   return fs.readFileSync(file, "UTF-8");
+// };
 
-html.prototype.write = function(path, data) {
-  return fs.writeFileSync(path, data);
-};
+// html.prototype.write = function (path, data) {
+//   return fs.writeFileSync(path, data);
+// };
 
-html.prototype.append = function(file, data) {
-  return fs.appendFileSync(file, data);
-};
+// html.prototype.append = function (file, data) {
+//   return fs.appendFileSync(file, data);
+// };
 
-module.exports = newTeam;
+// module.exports = newTeam;
+function generateHTML(){
+  console.log(allData)
+//format data to render to html
+//insert data into html, then return that value 
+//fs.writeFileSync, save as index.html
+}
 init();
