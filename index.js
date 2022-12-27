@@ -12,9 +12,18 @@ const html = require("./dist/index.js");
 // let newTeam = "data"
 let allData = [];
 
-// Array of questions to setup employees
-//make each individual question
-let generalQuestions = [
+// Array of questions to select employees roles
+
+let choiceQuestion = [
+  {
+    type: "list",
+    message: "What is the employee role?",
+    name: "role",
+    choices: ["Engineer", "Intern", "Manager","Employee", "none"],
+  },
+];
+//General profile questions
+let employeeQuestions = [
   {
     type: "input",
     message: "what is the employee's name?",
@@ -31,17 +40,9 @@ let generalQuestions = [
     name: "email",
   },
 
-  //second questions list
-];
-let choiceQuestion = [
-  {
-    type: "list",
-    message: "What is the employee role?",
-    name: "role",
-    choices: ["Employee", "Engineer", "Intern", "Manager", "none"],
-  },
 ];
 
+//additional role questions
 
 let managerQuestions = [
   {
@@ -60,7 +61,7 @@ let engineerQuestions = [
 let internQuestions = [
   {
     type: "input",
-    message: "what is the interns school?",
+    message: "what is the intern's school?",
     name: "school",
   },
 ];
@@ -70,38 +71,23 @@ function init() {
     .prompt([...choiceQuestion])
     .then((inputResponses) => {
     
-      if (inputResponses.role =="Employee"){
-        askGeneralQuestions();
-      }
-       else if(inputResponses.role == "Engineer") {
+      if (inputResponses.role == "Engineer") {
         askEngineerQuestions();
       } else if (inputResponses.role === "Intern") {
         askInternQuestions();
       }else if (inputResponses.role ==="Manager"){
         askManagerQuestions();
+      }else if (inputResponses.role =="Employee"){
+          askemployeeQuestions();
       } else if (inputResponses.role === "none") {
         generateHTML()
       }
     });
   }
-  function askGeneralQuestions() {
-    inquirer
-      .prompt(...askGeneralQuestions)
-      .then((inputResponses) => {
-        
-        let myEmployee = new Employee(
-          inputResponses.employeeName,
-          inputResponses.id,
-          inputResponses.email
-        );
-        allData.push(myEmployee);
-       //console.log(myEmployee); 
-        init()
-      })
-}  
+   
   function askInternQuestions() {
     inquirer
-      .prompt([...generalQuestions, ...internQuestions])
+      .prompt([...employeeQuestions, ...internQuestions])
       .then((inputResponses) => {
         
         let myIntern = new Intern(
@@ -118,7 +104,7 @@ function init() {
 
 function askEngineerQuestions() {
   inquirer
-    .prompt([...generalQuestions, ...engineerQuestions])
+    .prompt([...employeeQuestions, ...engineerQuestions])
     .then((inputResponses) => {
       console.log(inputResponses);
       const myEngineer = new Engineer(
@@ -134,7 +120,7 @@ function askEngineerQuestions() {
 }
 function askManagerQuestions() {
   inquirer
-    .prompt([...generalQuestions, ...managerQuestions])
+    .prompt([...employeeQuestions, ...managerQuestions])
     .then((inputResponses) => {
       console.log(inputResponses);
       const myManager = new Manager(
@@ -148,6 +134,21 @@ function askManagerQuestions() {
       init()
     });
   }
+  function askEmployeeQuestions() {
+    inquirer
+      .prompt([...employeeQuestions, employeeQuestions])
+      .then((inputResponses) => {
+        console.log(inputResponses);
+        const myEmployee = new Employee(
+          inputResponses.employeeName,
+          inputResponses.id,
+          inputResponses.email
+        );
+        allData.push(myEmployee);
+       //console.log(myEmployee); 
+        init()
+      })
+} 
 
 // {
 //   html;

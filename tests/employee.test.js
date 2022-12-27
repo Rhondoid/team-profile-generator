@@ -1,4 +1,4 @@
-const Employee = require("../project/employee.js");
+const Employee = require("../lib/employee.js");
 
 describe("employee profile setup", () => {
   describe("initialization", () => {

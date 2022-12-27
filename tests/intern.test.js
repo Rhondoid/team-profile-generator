@@ -1,8 +1,8 @@
-const Intern = require("../project/intern.js");
+const Intern = require("../lib/intern.js");
 
 describe("employee profile setup", () => {
   describe("initialization", () => {
-    let employee_object = new Employee("Sara", 2, "school", "sara@gmail.com", "Employee");
+    let employee_object = new Intern("Sara", 5, "Harvard", "sara@gmail.com", "Intern");
 
     it("employee constructor testing", () => {
       let expected_output = {
@@ -29,7 +29,7 @@ describe("employee profile setup", () => {
         expect(employee_object.getEmail()).toEqual("sara@gmail.com");
       });
     it("test_getRole function", () => {
-        expect(employee_object.getRole()).toEqual(Intern);
+        expect(employee_object.getRole()).toEqual("Intern");
       });
   });
 });
