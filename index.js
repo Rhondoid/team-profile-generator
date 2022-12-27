@@ -38,9 +38,10 @@ let choiceQuestion = [
     type: "list",
     message: "What is the employee role?",
     name: "role",
-    choices: ["Engineer", "Intern", "Manager", "none"],
+    choices: ["Employee", "Engineer", "Intern", "Manager", "none"],
   },
 ];
+
 
 let managerQuestions = [
   {
@@ -69,18 +70,35 @@ function init() {
     .prompt([...choiceQuestion])
     .then((inputResponses) => {
     
-      // console.log(myManager);
-      if (inputResponses.role == "Engineer") {
+      if (inputResponses.role =="Employee"){
+        askGeneralQuestions();
+      }
+       else if(inputResponses.role == "Engineer") {
         askEngineerQuestions();
       } else if (inputResponses.role === "Intern") {
         askInternQuestions();
+      }else if (inputResponses.role ==="Manager"){
+        askManagerQuestions();
       } else if (inputResponses.role === "none") {
         generateHTML()
-      }else if (inputResponses.role ==="Manager"){
-        askManagerQuestions()
-        
       }
     });
+  }
+  function askGeneralQuestions() {
+    inquirer
+      .prompt(...askGeneralQuestions)
+      .then((inputResponses) => {
+        
+        let myEmployee = new Employee(
+          inputResponses.employeeName,
+          inputResponses.id,
+          inputResponses.email
+        );
+        allData.push(myEmployee);
+       //console.log(myEmployee); 
+        init()
+      })
+}  
   function askInternQuestions() {
     inquirer
       .prompt([...generalQuestions, ...internQuestions])
@@ -97,7 +115,6 @@ function init() {
         init()
       });
   }
-}
 
 function askEngineerQuestions() {
   inquirer
@@ -130,8 +147,8 @@ function askManagerQuestions() {
       // console.log(myManager);
       init()
     });
-    
-}
+  }
+
 // {
 //   html;
 // }
