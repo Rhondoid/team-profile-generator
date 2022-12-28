@@ -19,7 +19,7 @@ let choiceQuestion = [
     type: "list",
     message: "What is the employee role?",
     name: "role",
-    choices: ["Engineer", "Intern", "Manager","Employee", "none"],
+    choices: ["Engineer", "Intern", "Manager", "Employee", "none"],
   },
 ];
 //General profile questions
@@ -39,7 +39,6 @@ let employeeQuestions = [
     message: "what is the employee's email?",
     name: "email",
   },
-
 ];
 
 //additional role questions
@@ -67,40 +66,36 @@ let internQuestions = [
 ];
 
 function init() {
+  inquirer.prompt([...choiceQuestion]).then((inputResponses) => {
+    if (inputResponses.role == "Engineer") {
+      askEngineerQuestions();
+    } else if (inputResponses.role === "Intern") {
+      askInternQuestions();
+    } else if (inputResponses.role === "Manager") {
+      askManagerQuestions();
+    } else if (inputResponses.role == "Employee") {
+      askEmployeeQuestions();
+    } else if (inputResponses.role === "none") {
+      generateHTML();
+    }
+  });
+}
+
+function askInternQuestions() {
   inquirer
-    .prompt([...choiceQuestion])
+    .prompt([...employeeQuestions, ...internQuestions])
     .then((inputResponses) => {
-    
-      if (inputResponses.role == "Engineer") {
-        askEngineerQuestions();
-      } else if (inputResponses.role === "Intern") {
-        askInternQuestions();
-      }else if (inputResponses.role ==="Manager"){
-        askManagerQuestions();
-      }else if (inputResponses.role =="Employee"){
-          askemployeeQuestions();
-      } else if (inputResponses.role === "none") {
-        generateHTML()
-      }
+      let myIntern = new Intern(
+        inputResponses.employeeName,
+        inputResponses.id,
+        inputResponses.school,
+        inputResponses.email
+      );
+      allData.push(myIntern);
+      // console.log(myIntern);
+      init();
     });
-  }
-   
-  function askInternQuestions() {
-    inquirer
-      .prompt([...employeeQuestions, ...internQuestions])
-      .then((inputResponses) => {
-        
-        let myIntern = new Intern(
-          inputResponses.employeeName,
-          inputResponses.id,
-          inputResponses.school,
-          inputResponses.email
-        );
-        allData.push(myIntern);
-        // console.log(myIntern); 
-        init()
-      });
-  }
+}
 
 function askEngineerQuestions() {
   inquirer
@@ -115,7 +110,7 @@ function askEngineerQuestions() {
       );
       allData.push(myEngineer);
       // console.log(myEngineer);
-      init()
+      init();
     });
 }
 function askManagerQuestions() {
@@ -131,24 +126,23 @@ function askManagerQuestions() {
       );
       allData.push(myManager);
       // console.log(myManager);
-      init()
+      init();
     });
-  }
-  function askEmployeeQuestions() {
-    inquirer
-      .prompt([...employeeQuestions, employeeQuestions])
-      .then((inputResponses) => {
-        console.log(inputResponses);
-        const myEmployee = new Employee(
-          inputResponses.employeeName,
-          inputResponses.id,
-          inputResponses.email
-        );
-        allData.push(myEmployee);
-       //console.log(myEmployee); 
-        init()
-      })
-} 
+}
+async function askEmployeeQuestions() {
+
+  await inquirer.prompt(employeeQuestions).then((inputResponses) => {
+    // console.log(inputResponses);
+    const myEmployee = new Employee(
+      inputResponses.employeeName,
+      inputResponses.id,
+      inputResponses.email
+    );
+    allData.push(myEmployee);
+    //console.log(myEmployee);
+    init();
+  });
+}
 
 // {
 //   html;
@@ -167,10 +161,10 @@ function askManagerQuestions() {
 // };
 
 // module.exports = newTeam;
-function generateHTML(){
-  console.log(allData)
-//format data to render to html
-//insert data into html, then return that value 
-//fs.writeFileSync, save as index.html
+function generateHTML() {
+  console.log(allData);
+  //format data to render to html
+  //insert data into html, then return that value
+  //fs.writeFileSync, save as index.html
 }
 init();
