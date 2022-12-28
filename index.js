@@ -12,7 +12,7 @@ const html = require("./dist/index.js");
 // let newTeam = "data"
 let allData = [];
 
-// Array of questions to select employees roles
+
 
 let choiceQuestion = [
   {
@@ -64,7 +64,7 @@ let internQuestions = [
     name: "school",
   },
 ];
-
+// Array of questions to select employees roles
 function init() {
   inquirer.prompt([...choiceQuestion]).then((inputResponses) => {
     if (inputResponses.role == "Engineer") {
@@ -92,7 +92,6 @@ function askInternQuestions() {
         inputResponses.email
       );
       allData.push(myIntern);
-      // console.log(myIntern);
       init();
     });
 }
@@ -109,7 +108,6 @@ function askEngineerQuestions() {
         inputResponses.email
       );
       allData.push(myEngineer);
-      // console.log(myEngineer);
       init();
     });
 }
@@ -125,21 +123,18 @@ function askManagerQuestions() {
         inputResponses.email
       );
       allData.push(myManager);
-      // console.log(myManager);
       init();
     });
 }
 async function askEmployeeQuestions() {
 
   await inquirer.prompt(employeeQuestions).then((inputResponses) => {
-    // console.log(inputResponses);
     const myEmployee = new Employee(
       inputResponses.employeeName,
       inputResponses.id,
       inputResponses.email
     );
     allData.push(myEmployee);
-    //console.log(myEmployee);
     init();
   });
 }
